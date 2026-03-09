@@ -1,4 +1,4 @@
-package com.jaroso.trazabilidad_productos.dto;
+package com.jaroso.trazabilidad_productos.dtos;
 
-public record UserCreateDto(String userName, String email, String password) {
+public record UserCreateDto(String username, String email, String password) {
 }

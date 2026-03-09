@@ -1,4 +1,4 @@
-package com.jaroso.trazabilidad_productos.repository;
+package com.jaroso.trazabilidad_productos.repositories;
 
 import com.jaroso.trazabilidad_productos.entities.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;

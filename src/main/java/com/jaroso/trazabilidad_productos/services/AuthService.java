@@ -1,4 +1,4 @@
-package com.jaroso.trazabilidad_productos.service;
+package com.jaroso.trazabilidad_productos.services;
 
 
 import com.jaroso.trazabilidad_productos.dtos.AuthDto;
@@ -6,7 +6,7 @@ import com.jaroso.trazabilidad_productos.dtos.UserCreateDto;
 import com.jaroso.trazabilidad_productos.dtos.UserDto;
 import com.jaroso.trazabilidad_productos.dtos.UserLoginDto;
 import com.jaroso.trazabilidad_productos.entities.Usuario;
-import com.jaroso.trazabilidad_productos.repository.UserRepository;
+import com.jaroso.trazabilidad_productos.repositories.UserRepository;
 import com.jaroso.trazabilidad_productos.security.JwtService;
 import com.jaroso.trazabilidad_productos.security.UserAuthority;
 import org.slf4j.Logger;
@@ -47,13 +47,12 @@ public class AuthService {
     public UserDto save(UserCreateDto userDTO) {
         Usuario user = new Usuario(
                 null,
-                userDTO.userName(),
+                userDTO.username(),
                 passwordEncoder.encode(userDTO.password()),
                 userDTO.email(),
-                List.of(UserAuthority.READ)
+                List.of(UserAuthority.READ, UserAuthority.WRITE)
         );
 
-        //Comprobar que el username no este ya en la bbdd
         if (this.repository.findByUserName(user.getUsername()).isPresent()) {
             log.error("El usuario ya existe");
             throw new RuntimeException("El usuario ya existe");
@@ -69,28 +68,23 @@ public class AuthService {
      * @return
      */
     public ResponseEntity<AuthDto> login (UserLoginDto user){
-        //1.Buscar el usuario en la bbdd
 
-        Optional<Usuario> userOptional = this.repository.findByUserName(user.userName());
+        Optional<Usuario> userOptional = this.repository.findByUserName(user.username());
         if (userOptional.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
 
-        //2.Comprobar la contraseña
-        Authentication authDto = new UsernamePasswordAuthenticationToken(user.userName(), user.password());
+        Authentication authDto = new UsernamePasswordAuthenticationToken(user.username(), user.password());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        user.userName(),
+                        user.username(),
                         user.password()
                 )
 
         );
 
-
-        //3.Generar el token JWT
         String token = jwtService.generateToken(authentication);
 
-        //4.Generar el objeto AuthDto y devolverlo
         Usuario userEntity = (Usuario) authentication.getPrincipal();
         AuthDto auth = new AuthDto(userEntity.getUsername(),
                 userEntity.getAuthorities().stream().map(Object::toString).toList(),

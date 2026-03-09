@@ -1,7 +1,8 @@
 package com.jaroso.trazabilidad_productos.security;
 
 
-import com.jaroso.pedidos2026.entities.User;
+
+import com.jaroso.trazabilidad_productos.entities.Usuario;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
@@ -27,7 +28,7 @@ public class JwtService {
 
     // GENERAR token al hacer login
     public String generateToken(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
+        Usuario user = (Usuario) authentication.getPrincipal();
 
         return Jwts.builder()
                 .signWith(Keys.hmacShaKeyFor(secretKey.getBytes()), Jwts.SIG.HS256)

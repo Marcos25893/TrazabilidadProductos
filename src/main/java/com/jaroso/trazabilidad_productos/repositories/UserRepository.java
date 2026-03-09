@@ -1,4 +1,4 @@
-package com.jaroso.trazabilidad_productos.repository;
+package com.jaroso.trazabilidad_productos.repositories;
 
 
 

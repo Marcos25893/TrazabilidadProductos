@@ -1,4 +1,4 @@
-package com.jaroso.trazabilidad_productos.mapper;
+package com.jaroso.trazabilidad_productos.mappers;
 
 
 

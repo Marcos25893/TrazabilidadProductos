@@ -1,4 +1,4 @@
-package com.jaroso.trazabilidad_productos.dto;
+package com.jaroso.trazabilidad_productos.dtos;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
 package com.jaroso.trazabilidad_productos.dtos;
 
-public record LoteResumenDto() {
+public record LoteResumenDto(Long id, String numeroLote, String estado) {
 }

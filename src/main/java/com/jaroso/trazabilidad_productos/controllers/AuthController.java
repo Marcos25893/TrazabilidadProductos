@@ -1,4 +1,4 @@
-package com.jaroso.trazabilidad_productos.controller;
+package com.jaroso.trazabilidad_productos.controllers;
 
 
 
@@ -6,7 +6,7 @@ import com.jaroso.trazabilidad_productos.dtos.AuthDto;
 import com.jaroso.trazabilidad_productos.dtos.UserCreateDto;
 import com.jaroso.trazabilidad_productos.dtos.UserDto;
 import com.jaroso.trazabilidad_productos.dtos.UserLoginDto;
-import com.jaroso.trazabilidad_productos.service.AuthService;
+import com.jaroso.trazabilidad_productos.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
