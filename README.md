@@ -10,7 +10,7 @@ La seguridad está gestionada con **Spring Security y JWT**, garantizando que so
 
 ## 2. Instrucciones de ejecución y despliegue
 
-### Ejecución en Local
+### Ejecución en AWS
 
 1. **Base de Datos**
 
